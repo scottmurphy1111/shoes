@@ -1,11 +1,2 @@
-<h1>Men's Shoes</h1>
-<div *ngFor="let shoe of currentShoes$ | async">
-  <h2>{{shoe.name}}</h2>
-  <h3>{{shoe.brand}} <span>{{shoe.type}}</span></h3>
-  <p>{{shoe.price | currency}}</p>
-  <ul>
-    <li *ngFor="let color of shoe.colors">
-      {{color}}
-    </li>
-  </ul>
-</div>
+<app-filter (filterChange)="onFilterChange($event)"></app-filter>
+<app-list></app-list>

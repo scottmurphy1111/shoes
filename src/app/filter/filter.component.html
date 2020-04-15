@@ -1,0 +1,62 @@
+<div class="checkbox-section">
+  <div class="checkbox-group">
+    <h3>{{filterMap[filterType.types].header}}</h3>
+    <ng-container *ngFor="let filter of filterMap[filterType.types].filters">
+      <input
+        type="checkbox"
+        [id]="filter.value"
+        (change)="onFilterChange(filter.value, filterType.types, $event)"
+      />
+      <label
+        [for]="filter.value"
+      >
+        {{filter.label}}
+      </label>
+    </ng-container>
+  </div>
+  <div class="checkbox-group">
+    <h3>{{filterMap[filterType.colors].header}}</h3>
+    <ng-container *ngFor="let filter of filterMap[filterType.colors].filters">
+      <input
+        type="checkbox"
+        [id]="filter.value"
+        (change)="onFilterChange(filter.value, filterType.colors, $event)"
+      />
+      <label
+        [for]="filter.value"
+      >
+        {{filter.label}}
+      </label>
+    </ng-container>
+  </div>
+  <div class="checkbox-group">
+    <h3>{{filterMap[filterType.brands].header}}</h3>
+    <ng-container *ngFor="let filter of filterMap[filterType.brands].filters">
+      <input
+        type="checkbox"
+        [id]="filter.value"
+        (change)="onFilterChange(filter.value, filterType.brands, $event)"
+      />
+      <label
+        [for]="filter.value"
+      >
+        {{filter.label}}
+      </label>
+    </ng-container>
+  </div>
+  <div class="checkbox-group">
+    <h3>{{filterMap[filterType.prices].header}}</h3>
+    <ng-container *ngFor="let filter of filterMap[filterType.prices].filters">
+      <input
+        type="checkbox"
+        [id]="filter.value"
+        (change)="onFilterChange(filter.value, filterType.prices, $event)"
+      />
+      <label
+        [for]="filter.value"
+      >
+        {{filter.label}}
+      </label>
+    </ng-container>
+  </div>
+</div>
