@@ -1,5 +1,10 @@
 <h1>Men's Shoes</h1>
+current {{currentShoes$ | async}}
+shoes {{shoes | async}}
+
 <div *ngFor="let shoe of currentShoes$ | async">
+
+  SHOEEEE{{shoe | json}}
   <h2>{{shoe.name}}</h2>
   <h3>{{shoe.brand}} <span>{{shoe.type}}</span></h3>
   <p>{{shoe.price | currency}}</p>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ShoesService } from '../shoes.service';
 import { Observable, of } from 'rxjs';
 import { Shoe } from '../shoe';
@@ -9,14 +9,16 @@ import { Shoe } from '../shoe';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  currentShoes$: Observable<Shoe[]> = of([]);
+  @Input() shoes: Shoe[];
+  currentShoes$: Observable<Shoe[]>;
+
 
   constructor(
     private shoesService: ShoesService
   ) { }
 
   ngOnInit() {
-    this.currentShoes$ = this.shoesService.allShoes$;
+    this.currentShoes$ = this.shoesService.currentShoes$;
+    console.log('this cs', this.currentShoes$);
   }
-
 }

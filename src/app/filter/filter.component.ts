@@ -19,7 +19,7 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
     this.filterMap = this.shoesService.filters;
-    // console.log('f map', this.filterMap);
+    console.log('f map', this.filterMap);
   }
 
   onFilterChange(filter: FilterItem, type: FilterType, event: Event) {
@@ -27,7 +27,7 @@ export class FilterComponent implements OnInit {
     const filterObj = {
       filter,
       type,
-      event
+      event: event.target
     };
     this.filterChange.emit(filterObj);
   }

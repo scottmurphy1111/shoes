@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ShoesService } from './shoes.service';
-import { FilterItem, FilterType } from './filter';
+import { FilterItem, FilterType, FilterGroup } from './filter';
+import { Shoe } from './shoe';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,27 +11,35 @@ import { FilterItem, FilterType } from './filter';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  // currentShoes$: Observable<Shoe[]> = of([]);
-  allFilters$: Observable<any[]> = of([]);
-  // typeFilters$: Observable<Filter[]> = of([]);
-  // colorFilters$: Observable<Filter[]> = of([]);
-  // brandFilters$: Observable<Filter[]> = of([]);
-  // priceFilters$: Observable<Filter[]> = of([]);
+  filterArray = [];
+  shoes: any;
 
   constructor(
     private shoesService: ShoesService
   ) {}
 
   ngOnInit(): void {
-    this.allFilters$ = this.shoesService.allFilters$;
-    // this.typeFilters$ = this.shoesService.typeFilters$;
-    // this.colorFilters$ = this.shoesService.colorFilters$;
-    // this.brandFilters$ = this.shoesService.brandFilters$;
-    // this.priceFilters$ = this.shoesService.priceFilters$;
-    console.log('all filters', this.allFilters$);
+    this.shoes = this.getShoes();
+    console.log('app ahoseehoes', this.shoes);
+  }
+
+  getShoes() {
+    this.shoesService.getShoes().subscribe(
+      val => console.log('app vall', val)
+    );
   }
 
   onFilterChange(filter: any) {
-    this.shoesService.processFilters(filter);
+    console.log('filter', filter);
+    if (filter.event.checked === true) {
+      this.filterArray.push(filter.filter);
+    } else {
+      const index = this.filterArray.indexOf(filter.filter);
+      this.filterArray.splice(index, 1);
+    }
+
+    this.shoesService.currentFilters$.next(this.filterArray);
+    // tslint:disable-next-line: max-line-length
+    this.shoesService.currentShoes$.next(this.shoesService.getFilteredShoes(this.shoesService.shoesArray, this.shoesService.currentFilters$.getValue()));
   }
 }
