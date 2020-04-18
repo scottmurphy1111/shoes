@@ -19,11 +19,9 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
     this.filterMap = this.shoesService.filters;
-    console.log('f map', this.filterMap);
   }
 
   onFilterChange(filter: FilterItem, type: FilterType, event: Event) {
-    // console.log('filter change', filter, type, event);
     const filterObj = {
       filter,
       type,

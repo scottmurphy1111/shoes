@@ -19,6 +19,5 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.currentShoes$ = this.shoesService.currentShoes$;
-    console.log('this cs', this.currentShoes$);
   }
 }

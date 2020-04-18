@@ -12,34 +12,21 @@ import { tap } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   filterArray = [];
-  shoes: any;
 
   constructor(
     private shoesService: ShoesService
   ) {}
 
   ngOnInit(): void {
-    this.shoes = this.getShoes();
-    console.log('app ahoseehoes', this.shoes);
-  }
-
-  getShoes() {
-    this.shoesService.getShoes().subscribe(
-      val => console.log('app vall', val)
-    );
   }
 
   onFilterChange(filter: any) {
-    console.log('filter', filter);
     if (filter.event.checked === true) {
-      this.filterArray.push(filter.filter);
+      this.filterArray = [...this.filterArray, filter.filter];
     } else {
-      const index = this.filterArray.indexOf(filter.filter);
-      this.filterArray.splice(index, 1);
+      this.filterArray = this.filterArray.filter(val => filter.filter !== val);
     }
 
     this.shoesService.currentFilters$.next(this.filterArray);
-    // tslint:disable-next-line: max-line-length
-    this.shoesService.currentShoes$.next(this.shoesService.getFilteredShoes(this.shoesService.shoesArray, this.shoesService.currentFilters$.getValue()));
   }
 }
