@@ -8,7 +8,6 @@ export enum FilterType {
 export interface FilterItem {
   label: string;
   value: string;
-  checked: boolean;
 }
 
 export interface FilterGroup {

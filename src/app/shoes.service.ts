@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { shoes } from './data/shoes';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { Shoe } from './shoe';
 import { HttpClient } from '@angular/common/http';
@@ -24,29 +23,59 @@ export class ShoesService {
   currentShoes$ = this.combined.pipe(
     switchMap(([filters]) => {
       return this.http.get<Shoe[]>(this.shoesUrl).pipe(
-        map((value: Shoe[]) => {
+        map((shoe: Shoe[]) => {
           if (filters && filters.length) {
-            return this.performFilters(value, filters);
+            return this.performFilters(shoe, filters);
           } else {
-            return value;
+            return shoe;
           }
         })
       );
     })
   );
 
-  performFilters(shoes: Shoe[], filters: any[]): Shoe[] {
-    let mapped = [];
+  performFilters(shoes: Shoe[], filters: any[]): any {
+    let allMapped: Shoe[] = [];
+    let typesMapped: any[] = [];
+    let brandsMapped: any[] = [];
+    let colorsMapped: Shoe[] = [];
+    let pricesMapped: Shoe[] = [];
 
-    shoes.map((shoe: Shoe) => {
-      filters.map(f => {
-        if (shoe.type === f || shoe.brand === f) {
-          // todo colors, prices
-          mapped = [...mapped, shoe];
+    filters.map(f => {
+      return shoes.filter((shoe) => {
+        switch (f.type) {
+          case 'types':
+            if (f.value === 'all') {
+              typesMapped = [...typesMapped, shoe];
+            } else if (shoe.type === f.value) {
+              typesMapped = [...typesMapped,  shoe];
+            }
+            break;
+
+          case 'brands':
+            // console.log('f', f);
+
+            if (shoe.brand === f.value) {
+              brandsMapped = [...brandsMapped, shoe];
+              console.log('brands map', brandsMapped);
+            }
+            break;
+
+          default:
+            break;
         }
       });
     });
 
-    return mapped;
+    allMapped = typesMapped.filter(val => {
+      console.log('val', val);
+      return brandsMapped.includes(val);
+    });
+
+    return allMapped;
+
+
+
+
   }
 }

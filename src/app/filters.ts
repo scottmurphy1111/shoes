@@ -5,19 +5,20 @@ export const FilterData: FilterMap = {
     header: 'Types',
     filters: [
       {
+        label: 'All',
+        value: 'all'
+      },
+      {
         label: 'Bball',
-        value: 'bball',
-        checked: false
+        value: 'bball'
       },
       {
         label: 'Running',
-        value: 'running',
-        checked: false
+        value: 'running'
       },
       {
         label: 'Casual',
-        value: 'casual',
-        checked: false
+        value: 'casual'
       },
     ] as FilterItem[],
   },
@@ -26,23 +27,19 @@ export const FilterData: FilterMap = {
     filters: [
       {
         label: 'Red',
-        value: 'red',
-        checked: false
+        value: 'red'
       },
       {
         label: 'White',
-        value: 'white',
-        checked: false
+        value: 'white'
       },
       {
         label: 'Black',
-        value: 'black',
-        checked: false
+        value: 'black'
       },
       {
         label: 'Blue',
-        value: 'blue',
-        checked: false
+        value: 'blue'
       },
     ] as FilterItem[],
   },
@@ -51,23 +48,19 @@ export const FilterData: FilterMap = {
     filters: [
       {
         label: 'Nike',
-        value: 'nike',
-        checked: false
+        value: 'nike'
       },
       {
         label: 'Puma',
-        value: 'puma',
-        checked: false
+        value: 'puma'
       },
       {
         label: 'Adidas',
-        value: 'adidas',
-        checked: false
+        value: 'adidas'
       },
       {
         label: 'Crevo',
-        value: 'crevo',
-        checked: false
+        value: 'crevo'
       },
     ] as FilterItem[],
   },
@@ -76,18 +69,15 @@ export const FilterData: FilterMap = {
     filters: [
       {
         label: 'Low',
-        value: 'low',
-        checked: false
+        value: 'low'
       },
       {
         label: 'Med',
-        value: 'med',
-        checked: false
+        value: 'med'
       },
       {
         label: 'High',
-        value: 'high',
-        checked: false
+        value: 'high'
       },
     ] as FilterItem[],
   },

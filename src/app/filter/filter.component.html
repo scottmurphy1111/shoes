@@ -1,62 +1,67 @@
 <div class="checkbox-section">
   <div class="checkbox-group">
     <h3>{{filterMap[filterType.types].header}}</h3>
-    <ng-container *ngFor="let filter of filterMap[filterType.types].filters">
-      <input
-        type="checkbox"
+    <ng-container *ngFor="let filter of filterMap[filterType.types].filters; first as first">
+      <span><input
+        type="radio"
+        [checked]="first"
         [id]="filter.value"
-        (change)="onFilterChange(filter.value, filterType.types, $event)"
+        [name]="filterType.types"
+        (change)="onFilterChange(filter, filterType.types, $event)"
       />
       <label
         [for]="filter.value"
       >
         {{filter.label}}
-      </label>
+      </label></span>
     </ng-container>
   </div>
   <div class="checkbox-group">
     <h3>{{filterMap[filterType.colors].header}}</h3>
     <ng-container *ngFor="let filter of filterMap[filterType.colors].filters">
-      <input
+      <span><input
         type="checkbox"
         [id]="filter.value"
-        (change)="onFilterChange(filter.value, filterType.colors, $event)"
+        [name]="filterType.colors"
+        (change)="onFilterChange(filter, filterType.colors, $event)"
       />
       <label
         [for]="filter.value"
       >
         {{filter.label}}
-      </label>
+      </label></span>
     </ng-container>
   </div>
   <div class="checkbox-group">
     <h3>{{filterMap[filterType.brands].header}}</h3>
     <ng-container *ngFor="let filter of filterMap[filterType.brands].filters">
-      <input
+      <span><input
         type="checkbox"
         [id]="filter.value"
-        (change)="onFilterChange(filter.value, filterType.brands, $event)"
+        [name]="filterType.brands"
+        (change)="onFilterChange(filter, filterType.brands, $event)"
       />
       <label
         [for]="filter.value"
       >
         {{filter.label}}
-      </label>
+      </label></span>
     </ng-container>
   </div>
   <div class="checkbox-group">
     <h3>{{filterMap[filterType.prices].header}}</h3>
     <ng-container *ngFor="let filter of filterMap[filterType.prices].filters">
-      <input
+      <span><input
         type="checkbox"
         [id]="filter.value"
-        (change)="onFilterChange(filter.value, filterType.prices, $event)"
+        [name]="filterType.prices"
+        (change)="onFilterChange(filter, filterType.prices, $event)"
       />
       <label
         [for]="filter.value"
       >
         {{filter.label}}
-      </label>
+      </label></span>
     </ng-container>
   </div>
 </div>
